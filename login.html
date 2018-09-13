@@ -1,0 +1,81 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Genius Interview</title>
+    <meta name="description" content="Genius Interview Question">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(./css/1.jpg) no-repeat;
+            background-size: cover;
+            font-size: 16px;
+        }
+
+        .form {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+        }
+    </style>
+</head>
+<body style="min-height:800px;padding-top: 100px;">
+
+<div class="container" style="margin-left: auto;margin-right: auto">
+    <form class="form form-horizontal " action="./login.php" method="post" id="login_form">
+        <h3 class="text-center">Genius</h3>
+
+        <div class="form-group">
+            <label for="username" class="col-sm-1 ">用户名</label>
+
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="col-sm-1 ">密码</label>
+
+            <div class="col-sm-12">
+                <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+            </div>
+        </div>
+
+        <div class="form-group text-center">
+            <button type="button" class="btn btn-success center-block " onclick="return validate()">
+                登&nbsp;&nbsp;&nbsp;录
+            </button>
+        </div>
+
+    </form>
+</div>
+</body>
+<script type="text/javascript" src="./js/vendor/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/layer/layer.js"></script>
+<script language="javascript">
+    function validate() {
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var reg = /[`~!@#$%^&*()\s_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘’，。、]/;
+
+        if (reg.test(username)) {
+            layer.msg('用户名输入不合法，请检查！');
+            return false;
+        } else if (username.length < 5 || username.length > 12 ) {
+            layer.msg('请输入5-12位用户名，请检查！');
+            return false;
+        }
+
+        if (!reg.test(password) || !/[A-Z]/.test(password)) {
+            layer.msg('密码必须包含字符和大写字母，请检查！');
+            return false;
+        } else if( password.length < 6 || password.length > 16){
+            layer.msg('请输入6-16位密码，请检查！');
+        }
+
+        $('#login_form').submit();
+    }
+</script>
+</html>
